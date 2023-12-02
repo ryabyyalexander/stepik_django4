@@ -1,10 +1,11 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
-from django.template.loader import render_to_string
 from django.urls import reverse
 
-
 menu = ['main', 'about', 'contact']
+
+data_db = {'id': 1, 'title': 'Angelina Jolie', 'content'}
+
 def index(request):
     # t = render_to_string('cannes/index.html')
     # return HttpResponse(t)
@@ -12,8 +13,11 @@ def index(request):
             'menu': menu}
     return render(request, 'cannes/index.html', context=data)
 
+
 def about(request):
     return render(request, 'cannes/about.html', {'title': 'О сайте'})
+
+
 def categories(request, cat_id):
     return HttpResponse(f"<h3>Статьи по категориям</h3><h1>id: {cat_id}</h1>")
 
@@ -28,8 +32,8 @@ def archive(request, year):
     if year > 2023:
         # raise Http404() # вызов функции page_not_found
         # return redirect('/', permanent=True) # ошибка 301 перенапрвление на постоянный адрес
-        uri = reverse('archive', args=(2023, )) # вычисляем путь url
-        return redirect(uri) # ошибка 302
+        uri = reverse('archive', args=(2023,))  # вычисляем путь url
+        return redirect(uri)  # ошибка 302
     return HttpResponse(f"<h3>Статьи по годам</h3><h1>{year}</h1>")
 
 
