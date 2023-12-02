@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Главная страница</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-<h1>Главная страница</h1>
+<p>{{ menu|join:" | " }}</p>
+<h1>{{ title|upper|cut:"?" }}</h1>
+<p>{{ 'the last hero'|slugify}}</p>
 </body>
 </html>

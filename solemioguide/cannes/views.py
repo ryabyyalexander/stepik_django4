@@ -4,14 +4,16 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 
 
+menu = ['main', 'about', 'contact']
 def index(request):
     # t = render_to_string('cannes/index.html')
     # return HttpResponse(t)
-
-    return render(request, 'cannes/index.html')
+    data = {'title': 'Главная страница?',
+            'menu': menu}
+    return render(request, 'cannes/index.html', context=data)
 
 def about(request):
-    return render(request, 'cannes/about.html')
+    return render(request, 'cannes/about.html', {'title': 'О сайте'})
 def categories(request, cat_id):
     return HttpResponse(f"<h3>Статьи по категориям</h3><h1>id: {cat_id}</h1>")
 
