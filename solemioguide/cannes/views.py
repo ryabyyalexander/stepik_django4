@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import redirect
+from django.urls import reverse
 
 
 def index(request):
@@ -20,7 +21,8 @@ def archive(request, year):
     if year > 2023:
         # raise Http404() # вызов функции page_not_found
         # return redirect('/', permanent=True) # ошибка 301 перенапрвление на постоянный адрес
-        return redirect('cat_id', '10')
+        uri = reverse('cat', args=('music', )) # вычисляем путь url
+        return redirect('cat', uri) # ошибка 302
     return HttpResponse(f"<h3>Статьи по годам</h3><h1>{year}</h1>")
 
 
