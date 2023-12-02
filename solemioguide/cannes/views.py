@@ -1,12 +1,17 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 from django.urls import reverse
 
 
 def index(request):
-    return HttpResponse("<h1>Страница приложения cannes</h1>")
+    # t = render_to_string('cannes/index.html')
+    # return HttpResponse(t)
 
+    return render(request, 'cannes/index.html')
 
+def about(request):
+    return render(request, 'cannes/about.html')
 def categories(request, cat_id):
     return HttpResponse(f"<h3>Статьи по категориям</h3><h1>id: {cat_id}</h1>")
 
