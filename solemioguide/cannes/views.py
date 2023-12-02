@@ -1,4 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -17,7 +18,9 @@ def categories_by_slug(request, cat_slug):
 
 def archive(request, year):
     if year > 2023:
-        raise Http404()
+        # raise Http404() # вызов функции page_not_found
+        # return redirect('/', permanent=True) # ошибка 301 перенапрвление на постоянный адрес
+        return redirect('cat_id', '10')
     return HttpResponse(f"<h3>Статьи по годам</h3><h1>{year}</h1>")
 
 
